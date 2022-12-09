@@ -1,0 +1,11 @@
+rows = int(input("Please Enter the total Number of Rows  : "))
+
+print("Inverted Right Triangle Pattern of Numbers") 
+i = rows
+while(i >= 1):
+    j = 1
+    while(j <= i):      
+        print('%d ' %i, end = '  ')
+        j = j + 1
+    i = i - 1
+    print()
