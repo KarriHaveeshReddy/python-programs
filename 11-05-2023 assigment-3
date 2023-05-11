@@ -1,0 +1,10 @@
+def generate_sequence(n):
+    if n == 1:
+        return [1]
+    else:
+        return [2] + [2 * i for i in generate_sequence(n - 1)]
+
+
+if __name__ == "__main__":
+    n = int(input())
+    print(*generate_sequence(n))
