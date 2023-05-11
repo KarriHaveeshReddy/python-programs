@@ -1,0 +1,15 @@
+def main():
+    for _ in range(int(input())):
+        n = int(input())
+        arr = list(map(int, input().split()))
+        q = int(input())
+        for _ in range(q):
+            l, r = map(int, input().split())
+            if l > r:
+                print(0)
+            else:
+                print(sum(arr[l - 1:r]))
+
+
+if __name__ == "__main__":
+    main()
