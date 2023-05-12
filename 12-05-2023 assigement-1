@@ -1,0 +1,33 @@
+class NumArray:
+
+    def __init__(self, nums: List[int]):
+        self.nums = nums
+        self.tree = [0] * (4 * len(nums))
+        self.build_tree(0, 0, len(nums) - 1)
+
+    def build_tree(self, node_id, left, right):
+        if left == right:
+            self.tree[node_id] = self.nums[left]
+        else:
+            mid = (left + right) // 2
+            self.build_tree(2 * node_id + 1, left, mid)
+            self.build_tree(2 * node_id + 2, mid + 1, right)
+            self.tree[node_id] = self.tree[2 * node_id + 1] + self.tree[2 * node_id + 2]
+
+    def sumRange(self, left: int, right: int) -> int:
+        return self.query(0, 0, len(self.nums) - 1, left, right)
+
+    def query(self, node_id, left, right, query_left, query_right):
+        if query_left > right or query_right < left:
+            return 0
+        elif query_left <= left and query_right >= right:
+            return self.tree[node_id]
+        else:
+            mid = (left + right) // 2
+            return self.query(2 * node_id + 1, left, mid, query_left, query_right) + \
+                   self.query(2 * node_id + 2, mid + 1, right, query_left, query_right)
+
+
+# Your NumArray object will be instantiated and called as such:
+# obj = NumArray(nums)
+# param_1 = obj.sumRange(left,right)
