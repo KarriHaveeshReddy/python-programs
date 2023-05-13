@@ -1,0 +1,15 @@
+class Solution:
+    def subarraysDivByK(self, nums: List[int], k: int) -> int:
+        lst=[0]*k
+        n=len(nums)
+        sm=0
+        for i in range(n):
+            sm+=nums[i]
+            lst[sm%k]+=1
+        st=lst[0]
+        ct=(st*(2+(st-1)))//2
+        for i in range(1,k):
+            x=lst[i]
+            ct+=(x*(x-1))//2
+        return ct
+
